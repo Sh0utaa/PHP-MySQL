@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ხელფასი</title>
+    <style>
+        form{
+            width: 400px;
+            margin: auto;
+            border: solid 1px black;
+            padding: 10px;
+        }
+        input {
+            padding: 10px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <form method="GET" action="table.php">
+        <input type="text" placeholder="სახელი" name="saxeli">
+        <br/>
+        
+        <input type="text" placeholder="გვარი" name="gvari">
+        <br/>
+        
+        <input type="text" placeholder="დაკავებული თანამდებობა" name="tanamdeboba">
+        <br/>
+        
+        <input type="number" placeholder="ხელფასის რაოდენობა" name="xelfasi">
+        <br/>
+
+        <label>
+            <input type="checkbox" id="fixedCheckbox" name="fiqsirebuli">
+            ფიქსირებული
+        </label>
+        <br/>
+
+        <input type="number" placeholder="პროცენტი (%)" name="procenti" id="percentInput">
+        <br/>
+
+        <button type="submit">გაგზავნა</button>
+    </form>
+
+    <script>
+        const checkbox = document.getElementById("fixedCheckbox");
+        const percentInput = document.getElementById("percentInput");
+
+        checkbox.addEventListener("change", function() {
+            if (checkbox.checked) {
+                percentInput.disabled = true;
+                percentInput.value = "";
+            } else {
+                percentInput.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>

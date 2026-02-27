@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ქულები</title>
+    <style>
+        form{
+            margin: auto;
+            width: 50%;
+            border: solid 1px black;
+            padding: 10px;
+            display: flex;
+        }
+        form div{
+            margin-right: 20px;
+        }
+        input {
+            padding: 10px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <form method="post" action="table.php">
+        <div class="">
+            <h2>სტუდენტი:</h2>
+            <input type="text" name="studentis_saxeli" placeholder="სახელი">
+            <br/>
+            <input type="text" name="studentis_gvari" placeholder="გვარი">
+            <br/>
+            <input type="number" name="studentis_kursi" placeholder="კურსი">
+            <br/>
+            <input type="number" name="studentis_semestri" placeholder="სემესტრი">
+            <br/>
+            <input type="text" name="studentis_saswavlo_kursi" placeholder="სასწავლო კურსი">
+            <br/>
+            <input type="number" min="1" max="100" name="studentis_mighebuli_nishani" placeholder="მიღებული ნიშანი">
+            <br/>
+            <button style="padding: 10px;" type="submit">გაგზავნა</button>
+        </div>
+        <div class="">
+            <h2>ლექტორი:</h2>
+            <input type="text" placeholder="სახელი" name="leqtoris_saxeli">
+            <br/>
+            <input type="text" placeholder="გვარი" name="leqtoris_gvari">
+            <br/>
+        </div>
+        <div class="">
+            <h2>დეკანი:</h2>
+            <input type="text" placeholder="სახელი" name="dekanis_saxeli">
+            <br/>
+            <input type="text" placeholder="გვარი" name="dekanis_gvari">
+            <br/>
+        </div>
+    </form>
+</body>
+</html>
