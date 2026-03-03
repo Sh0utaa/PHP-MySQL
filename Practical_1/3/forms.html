@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ტესტი</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    .container {
+        width: 50%;
+        margin: 40px auto;
+        padding: 20px;
+        border: 1px solid black;
+    }
+
+    .field {
+        margin-bottom: 20px;
+    }
+
+    .field p {
+        margin-bottom: 8px;
+        font-weight: bold;
+    }
+
+    .option {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        padding: 6px;
+        box-sizing: border-box;
+    }
+
+    button {
+        padding: 6px 12px;
+        cursor: pointer;
+    }
+</style>
+</head>
+
+<body>
+<form method="post" class="container" action="table.php">
+    <h2>შეავსეთ ფორმა</h2>
+
+    <div class="field">
+        <p>HTML-ში რომელი თეგი გამოიყენება ბმულის შესაქმნელად?</p>
+        <label class="option">
+            <input type="radio" name="q1" value="1"> &lt;link&gt;
+        </label>
+        <label class="option">
+            <input type="radio" name="q1" value="2"> &lt;a&gt;
+        </label>
+        <label class="option">
+            <input type="radio" name="q1" value="3"> &lt;href&gt;
+        </label>
+        <label class="option">
+            <input type="radio" name="q1" value="4"> &lt;url&gt;
+        </label>
+    </div>
+
+    <div class="field">
+        <p>CSS-ში რომელი property აკონტროლებს ტექსტის ფერს?</p>
+        <label class="option">
+            <input type="radio" name="q2" value="1"> font-style
+        </label>
+        <label class="option">
+            <input type="radio" name="q2" value="2"> text-color
+        </label>
+        <label class="option">
+            <input type="radio" name="q2" value="3"> color
+        </label>
+        <label class="option">
+            <input type="radio" name="q2" value="4"> background-color
+        </label>
+    </div>
+
+    <div class="field">
+        <p>რომელი HTML თეგი გამოიყენება დალაგებული სიისთვის?</p>
+        <label class="option">
+            <input type="radio" name="q3" value="1"> &lt;ul&gt;
+        </label>
+        <label class="option">
+            <input type="radio" name="q3" value="2"> &lt;ol&gt;
+        </label>
+        <label class="option">
+            <input type="radio" name="q3" value="3"> &lt;li&gt;
+        </label>
+        <label class="option">
+            <input type="radio" name="q3" value="4"> &lt;dl&gt;
+        </label>
+    </div>
+
+    <div class="field">
+        <p>რა განსხვავებაა class და id ატრიბუტებს შორის HTML-ში?</p>
+        <input type="text" name="q4">
+    </div>
+
+    <div class="field">
+        <p>რას ნიშნავს CSS-ში box model?</p>
+        <input type="text" name="q5">
+    </div>
+
+    <button type="submit">Submit</button>
+
+</form>
+</body>
+</html>
