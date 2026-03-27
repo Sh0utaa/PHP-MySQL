@@ -1,0 +1,3 @@
+Hello Mr. Professor,
+
+This is a working PHP form that saves the previously provided content by the user.
