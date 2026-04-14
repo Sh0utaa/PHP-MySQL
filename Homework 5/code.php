@@ -23,7 +23,21 @@
         $dir = "files/".$file.".txt";
         fopen($dir, 'w');
     }
+
+    if(isset($_POST['f-delete'])) {
+        $file = $_POST['file'];
+        $dir = "files/".$file;
+
+        if(file_exists($dir) && is_file($dir)) {
+            unlink($dir);
+        }
+    }
 ?>
+<style>
+    body {
+        display: flex;
+    }
+</style>
 <body>
     <form method="post">
         file name:
@@ -31,6 +45,21 @@
         <input type="text" name="file">
         <br><br>
         <button type="submit" name="f-submit">upload</button>
+    </form>
+
+    <form method="post">
+        <label for="file">files:</label>
+        <select name="file" id="">
+            <?php 
+                $files = scandir("files/") ;
+                foreach (array_slice($files, 2) as $file) {
+                    echo "<option value={$file}>";
+                    echo $file;
+                    echo "</option>";
+                }
+            ?>
+        </select>
+        <button type="submit" name="f-delete">delete</button>
     </form>
 
     <?php 

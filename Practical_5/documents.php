@@ -6,81 +6,92 @@
     <title>Document</title>
 </head>
 <?php 
-    if(isset($_POST['f-submit'])) {
-        $file = $_POST['file'];
-        $dir = "files/{$file}.txt";
+    $content = "";
+    $filename = "";
 
-        if(!file_exists($dir)) {
-            $handle = fopen($dir, "w");
+    // create txt files
+    if(isset($_POST['f-create'])) {
+        $file = $_POST['file'];
+
+        $dir = "files/".$file.".txt";
+
+        if(!is_file($dir) && !file_exists($dir)) {
+            fopen($dir, "w");
         } else {
-            echo "{$file} already exists";
+            echo "file {$file} already exists";
         }
     }
 
-    if(isset($_POST['edit-form'])) {
-        $text = $_POST['text'];
+    // load contents from a txt file into $content variable
+    if(isset($_POST['f-load'])) {
         $file = $_POST['file'];
-        $dir = "files/{$file}";
 
-        $handle = fopen($dir, 'w');
-        fwrite($handle, $text . "\n");
-        fclose($handle);
+        $dir = "files/".$file;
+
+        if(is_file($dir) && file_exists($dir)) {
+            $filename = $file;
+
+            $handle = fopen($dir, "r");
+            $filesize = filesize($dir);
+
+            $filesize == 0 ? $content = "" : $content = fread($handle, $filesize);
+
+            fclose($handle);
+        } else {
+            echo "file {$file} doesn't exist or is not valid";
+        }
     }
 
-    $content = "";
-    if(isset($_POST['text-load'])) {
-        $name = $_POST['file'];
-        $dir = "files/".$name;
+    // save changes made to loaded txt file
+    if(isset($_POST['f-save'])) {
+        $user_content = $_POST['content'];
+        $file_name = $_POST['f-name'];
+        $dir = "files/".$file_name;
 
-        $handle = fopen($dir, 'r');
-        $content = fread($handle, filesize($dir));
+        if(is_file($dir) && file_exists($dir)) {
+            $handle = fopen($dir, "w");
+            fwrite($handle, $user_content);
 
-        fclose($handle);
+            fclose($handle);
+        } else {
+            echo "error: {$file_name}";
+        }
     }
 ?>
-<style>
-    body {
-        display: flex;
-    }
-    textarea {
-        width: 300px;
-        height: 250px;
-        background-color: pink;
-    }
-
-    .textarea_class {
-        margin-left: 50px;
-    }
-</style>
-<body>
+<body style="display: flex; justify-content: space-evenly;">
     <div>
         <form method="post">
-            input txt file:
-            <br>
-            <input type="text" name="file" id=""> 
+            create file:
+            <input type="text" name="file" id="" accept=".txt">
             <br><br>
-            <button type="submit" name="f-submit">create</button>
+            <button type="submit" name="f-create">create file</button>
         </form>
     </div>
-    <div class="textarea_class">
+    <div>
         <form method="post">
-            <label for="file">files</label>
+            <label for="file">files:</label>
             <select name="file" id="">
                 <?php 
-                    $dirs = scandir("files/");
-                    for ($i=2; $i < count($dirs); $i++) { 
-                        echo "<option value=" . $dirs[$i] ."> " . $dirs[$i] . " </option>";
-                    } 
+                    $files = scandir("files/") ;
+                    foreach (array_slice($files, 2) as $file) {
+                        echo "<option value={$file}>";
+                        echo $file;
+                        echo "</option>";
+                    }
                 ?>
             </select>
-
-            <button type="submit" name="text-load">load</button>
-
-            <p>edit your selected file here:</p>
-            <textarea name="text" id=""><?php $content ?>
-            </textarea>
+            <br><br>
+            <button type="submit" name="f-load">load file</button>
+        </form>
+    </div>
+    <div>
+        <form method="post">
+            <?php echo $filename ?> content:
+            <input type="hidden" name="f-name" value="<?php echo $filename ?>">
             <br>
-            <button type="submit" name="edit-form">edit</button>
+            <textarea name="content" id="" style="width: 300px; height: 240px;"><?php echo $content ?></textarea>
+            <br>
+            <button type="submit" name="f-save">save</button>
         </form>
     </div>
 </body>
