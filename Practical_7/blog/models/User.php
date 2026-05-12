@@ -19,6 +19,7 @@
     }
 
     function updateUser($conn, $user) {
+        $date = date("Y-m-d");
         $res = mysqli_query($conn, "UPDATE users SET 
             role_id  = '{$user['role_id']}',
             name     = '{$user['name']}',
@@ -26,7 +27,8 @@
             password = '{$user['password']}',
             email    = '{$user['email']}',
             mobile   = '{$user['mobile']}',
-            address  = '{$user['address']}'
+            address  = '{$user['address']}',
+            updated_at = '{$date}'
             WHERE id = '{$user['id']}'
         "); 
         if(!$res) {
@@ -35,6 +37,8 @@
     }
 
     function deleteUser($conn, $id) {
-        mysqli_query($conn, "DELETE FROM users WHERE id=$id");
+        $date = date("Y-m-d");
+        // mysqli_query($conn, "DELETE FROM users WHERE id=$id");
+        mysqli_query($conn, "UPDATE users SET deleted_at='{$date}' WHERE id='{$id}'");
     }
 ?>
