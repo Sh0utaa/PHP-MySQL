@@ -4,8 +4,8 @@
         "INSERT INTO users 
         (role_id, email, password, name, lastname, mobile, address) 
         VALUES 
-        ({$user['role_id']}, {$user['email']}, {$user['password']}, 
-        {$user['name']}, {$user['lastname']}, {$user['mobile']}, {$user['address']}");
+        ('{$user['role_id']}', '{$user['email']}', '{$user['password']}', 
+        '{$user['name']}', '{$user['lastname']}', '{$user['mobile']}', '{$user['address']}')");
     }
 
     function getUserById($conn, $id) {

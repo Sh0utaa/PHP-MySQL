@@ -20,6 +20,12 @@
         padding: 10px;
         border: 1px solid black;
     }
+
+    .form_container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
 </style>
 <body>
     <table border="1">
@@ -58,34 +64,61 @@
         <?php } ?>
     </table> 
 
-    <?php if($editUser) { ?>
+    <div class="form_container">
+        <?php if($editUser) { ?>
+            <form method="post" class="form">
+                <h3>Edit form</h3>
+                <label for="role_id">roles:</label>
+                <select name="role_id">
+                    <?php foreach($roles as $role) { ?>
+                        <option value="<?= $role[0] ?>"><?php echo $role[1] ?></option>
+                    <?php } ?>
+                </select>
+
+                <input type="hidden" name="id" value="<?= $editUser[0][0] ?>">
+                <br><br>
+                name: <input type="text" name="name" value="<?= $editUser[0][4] ?>">
+                <br><br>
+                lastname: <input type="text" name="lastname" value="<?= $editUser[0][5] ?>">
+                <br><br>
+                password: <input type="text" name="password" value="<?= $editUser[0][3] ?>">
+                <br><br>
+                email: <input type="email" name="email" value="<?= $editUser[0][2] ?>">
+                <br><br>
+                mobile: <input type="text" name="mobile" value="<?= $editUser[0][6] ?>">
+                <br><br>
+                address: <input type="address" name="address" value="<?= $editUser[0][7] ?>">
+
+                <br><br>
+                <button type="submit" name="update">submit</button>
+            </form>
+        <?php } ?>
+
         <form method="post" class="form">
-            <h3>edit form</h3>
-            <label for="role_id">roles:</label>
+            <h3>Add user</h3>
+            <label for="role_id">role</label>
             <select name="role_id">
-                <?php foreach($roles as $role) { ?>
-                    <option value="<?= $role[0] ?>"><?php echo $role[1] ?></option>
-                <?php } ?>
+                <?php 
+                    foreach($roles as $role) {
+                        echo "<option value=$role[0]>{$role[1]}</option>";
+                    } 
+                ?>
             </select>
-
-            <input type="hidden" name="id" value="<?= $editUser[0][0] ?>">
             <br><br>
-            name: <input type="text" name="name" value="<?= $editUser[0][4] ?>">
+            name: <input type="text" name="name" id="">
             <br><br>
-            lastname: <input type="text" name="lastname" value="<?= $editUser[0][5] ?>">
+            lastname: <input type="text" name="lastname" id="">
             <br><br>
-            password: <input type="text" name="password" value="<?= $editUser[0][3] ?>">
+            email: <input type="email" name="email" id="">
             <br><br>
-            email: <input type="email" name="email" value="<?= $editUser[0][2] ?>">
+            password: <input type="text" name="password" id="">
             <br><br>
-            mobile: <input type="text" name="mobile" value="<?= $editUser[0][6] ?>">
+            mobile: <input type="text" name="mobile" id="">
             <br><br>
-            address: <input type="address" name="address" value="<?= $editUser[0][7] ?>">
-
+            address: <input type="text" name="address" id="">
             <br><br>
-            <button type="submit" name="update">submit</button>
+            <button type="submit" name="add">submit</button>
         </form>
-    <?php } ?>
-
+    </div>
 </body>
 </html>
