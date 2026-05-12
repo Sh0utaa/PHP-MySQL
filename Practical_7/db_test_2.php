@@ -21,7 +21,7 @@
         padding: 8px;
     }
 
-    form{
+    .handle_form{
         width: 300px;
         border: solid 1px black;
         margin: auto;
@@ -43,17 +43,23 @@
         $select_role_by_id = "SELECT * FROM roles WHERE id = $id";
         $result_role_by_id  = mysqli_query($connect, $select_role_by_id);
         $row_role_by_id = mysqli_fetch_assoc($result_role_by_id);
-        echo "<pre>";
-        print_r($row_role_by_id);
-        echo "</pre>";
 ?>
-<form method="post">
+<form method="post" class="handle_form">
     <h3>Update Form</h3>
     Role: <input type="text" name="role" value="<?= $row_role_by_id['role'] ?>">
     <br><br>
     <button>Edit Role</button>
 </form>
 <?php
+    }
+?>
+
+<?php 
+    if(isset($_POST['delete'])) {
+        $delete_id = $_POST['delete_id'];
+
+        mysqli_query($connect, "DELETE FROM roles WHERE id = $delete_id");
+        header("location: db_test_2.php");
     }
 ?>
 <hr><hr>
@@ -81,7 +87,12 @@
         <td><?= $row[3]?></td>
         <td><?= $row[4]?></td>
         <td><a href="?id=<?= $row[0]?>">edit</a></td>
-        <td><button>drop</button></td>
+        <td>
+            <form method="post" >
+                <input type="hidden" value="<?= $row[0] ?>" name="delete_id">
+                <button type="submit" name="delete">drop</button>
+            </form>
+        </td>
     </tr>
     <?php
         }
