@@ -1,0 +1,51 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  height: 60px;
+  background: #fff;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+nav .brand {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #111;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #444;
+  font-size: 0.95rem;
+}
+
+.nav-links a:hover {
+  color: #111;
+}
+
+.btn-login {
+  padding: 0.4rem 1rem;
+  border: 1px solid #111;
+  border-radius: 6px;
+  color: #111 !important;
+  transition: background 0.15s, color 0.15s;
+}
+
+.btn-login:hover {
+  background: #111;
+  color: #fff !important;
+}
